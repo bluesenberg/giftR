@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+<div id='container'>
+
+  <head>
+   <meta charset='utf-8'>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/main.css">
+      <script src="jquery-1.11.3.min.js"></script>
+    <script src="popup.js"></script>
+    <style>
+
+      body {
+        margin:0;
+        padding-left:0;
+        min-width:280px;
+        max-width: 280px;
+        min-height:70px;
+      }
+    </style>
+    <div id='cssmenu'>
+      <ul>
+        <li><a id="giftTab" href='#'>Giftees</a></li>
+        <li class="cssmenu-ul-li-last"><a id="shoppingListTab" href='#'>Shopping List</a></li>
+      </ul>
+    </div>
+  </head>
+
+  <body>
+      <div id="giftTabCont">
+        <div class="boldNameText">Gift Name:
+          <input id="giftNameBox" type="text" name="ToDo" placeholder="Gift Name" autofocus>
+        </div>
+        <title>Add Gift</title>
+        <div id="addGift">Save gift to:
+        </div>
+        <div id="dynamicList" class="gifteeList">
+          <ul id="giftees">
+          </ul>
+        </div>
+
+        <div class="boldNameText" id= "footer"> Add New Recipient:
+          <input id="gifteeAddBox" type="text" name="ToDo" placeholder="Enter Recipient Name" autofocus>
+          <input type="submit" value="Add" class="addNameFlatButton">
+        </div>
+      </div>
+  </body>
+
+  <div id="shoppingTabCont" class="showContent">
+    <span>
+      <img id="deliconTitle" src='del_title.png'class='deleteIcon'>
+      <div class="boldNameText shoppingListTitleStyle" id="shoppingListTitle">
+      </div>
+    </span>
+    <div id="storageList" class="gifteeList" class="shoppingListList">
+      <ul id="gifts">
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+</html>

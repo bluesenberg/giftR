@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+ 
+  "name": "GiftR",
+  "description": "This extension keeps track of gifting occasions and gifts",
+  "version": "1.0",
+  "browser_action": {
+   "default_icon": "iconlargesquarebigbow.png",
+   "default_popup": "popup.html"
+  },
+    "content_scripts": [ {
+    "js": [ "jquery-1.11.3.min.js", "popup.js" ],
+    "matches": [ "http://*/*", "https://*/*"]
+  }],
+  "permissions": [
+   "activeTab",
+   "storage"
+   ]
+
+}
