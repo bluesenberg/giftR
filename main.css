@@ -1,3 +1,11 @@
+body {
+  margin:0;
+  padding-left:0;
+  min-width:280px;
+  max-width: 280px;
+  min-height:70px;
+}
+
 #container{
   width:100%;
 }
@@ -164,7 +172,6 @@
   font-size: 14px;
   position: relative;
   border-bottom: 5px solid #00BCD4;
-/*  border-top:10px solid #0097A7;*/
 }
 #cssmenu ul li a:hover {
     color: #FFFFFF;
@@ -245,7 +252,7 @@ padding: 0px;
 }
 
 .gifteeAddPrompt {
-    background-color: #ECF0F0; */
+    background-color: #E0E0E0; */
     line-height: 30px;
     color:#95A5A6;
     border-bottom-style: solid;
