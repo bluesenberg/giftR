@@ -236,7 +236,7 @@ padding: 0px;
   background-position: -5px; 
 }
 
-.deleteIcon{
+.deleteIconClass{
   margin-right: 7px;
   margin-left: 7px;
   margin-top: 7px;
@@ -246,7 +246,7 @@ padding: 0px;
   float: right;
 }
 
-.deleteIcon:hover{
+.deleteIconClass:hover{
   opacity:1;
   cursor:pointer;
 }

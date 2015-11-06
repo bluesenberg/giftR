@@ -183,9 +183,9 @@ $(document).ready(function() {
   function populateGiftList(gifts,gifteeName){
     if(typeof gifts !== 'undefined'){
       $('#shoppingListTitle').html(gifteeName);
-      $('#deliconTitle').click( function() {
+      $('#deleteIconTitle').click( function() {
         deleteFromStorage(gifteeName,-1);
-        $('#deliconTitle').unbind();
+        $('#deleteIconTitle').unbind();
   });
       $("#gifts li").remove();
       $("#gifts img").remove();
@@ -195,23 +195,24 @@ $(document).ready(function() {
         var giftNameText = gift["giftName"];
         if(giftNameText !== null){
             var giftURL = gift["giftURL"];
-            $("#gifts").append("<li><span class='shoppingListListSpan'><img id=delicon"+i+" src='del.png'class='deleteIcon'><p class='shoppingList_p'>" + giftNameText + 
+            $("#gifts").append("<li id = gift"+i+"><span class='shoppingListListSpan'><img id=deleteIcon"+i+" src='del.png'class='deleteIconClass'><p class='shoppingList_p'>" + giftNameText + 
               "</p></span></li>");
-            $('#gifts li').click(function(){
+            $('#gift'+ i).click(function(){
               if($(event.target).is('P')){
+                console.log(giftURL);
                 var win = window.open(giftURL);
                   if(win){
                         //Browser has allowed it to be opened
                     win.focus();
                   }else{
                       //Browser has blocked it
-                    alert('Please allow popups for this site');
+                    alert('Please allow popups for this extension');
                   }
               }
             });
-            $('#delicon'+i).click(function(){
+            $('#deleteIcon'+i).click(function(){
               deleteFromStorage(gifteeName, i);
-              $('#deliconTitle').unbind();
+              $('#deleteIconTitle').unbind();
             });
         }
       });
@@ -256,11 +257,11 @@ $(document).ready(function() {
 
   function switchTab(){
     var $shoppingListTab = $('#shoppingListTab');
-   $('#giftTab').toggleClass('cssmenu-ul-li-selected');//unselect gift tab
+   $('#gifteeTab').toggleClass('cssmenu-ul-li-selected');//unselect gift tab
    $shoppingListTab.toggleClass("cssmenu-ul-li-selected");// select shopping list tab
    $shoppingListTab.toggleClass("showContent");//show shopping list tab
    $('#shoppingTabCont').toggleClass("showContent"); //show Shopping list tab content.
-   $('#giftTabCont').toggleClass("showContent"); //hide gift tab content.
+   $('#gifteeTabCont').toggleClass("showContent"); //hide gift tab content.
   }
 
 
@@ -283,8 +284,8 @@ $(document).ready(function() {
     names : [],
     };
 
-  var $giftTab = $('#giftTab');
-  $giftTab.toggleClass('cssmenu-ul-li-selected');
+  var $gifteeTab = $('#gifteeTab');
+  $gifteeTab.toggleClass('cssmenu-ul-li-selected');
   $('#shoppingListTab').addClass("showContent");
 
   $('.addNameFlatButton').click(addNewGiftee);
@@ -297,15 +298,10 @@ $(document).ready(function() {
     }
   });
 
-$giftTab.click( function() {
-  if(!$giftTab.hasClass("cssmenu-ul-li-selected")){
+$gifteeTab.click( function() {
+  if(!$gifteeTab.hasClass("cssmenu-ul-li-selected")){
   switchTab();
-  $('#deliconTitle').unbind();
+  $('#deleteIconTitle').unbind();
   }
   });
-
-
-
-
 });
-  // Debug and test.
