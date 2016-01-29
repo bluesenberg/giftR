@@ -47,7 +47,6 @@ $(document).ready(function() {
     var arrayPoint = 0;
     arrayIndex = 0;
     $.each(nameArray ,function(arrayPoint,v) {
-      // arrayPoint = arrayPoint + arrayIndex;
       var a = "icon"+arrayPoint;
       $giftees.append("<span><li>" + v + "<img id="+a+" src='ic_view_list_black_24px.svg'class='listIcon'></li>");
      $('#'+a).click(function(){
@@ -68,25 +67,14 @@ $(document).ready(function() {
         if($('#giftNameBox').val() == ''){
           $('#giftNameBox').attr("placeholder","Please Enter Name Of Gift");
         }else{
-          var gifteeName = $(this).text();
-          var isInList = checkIfAlreadyInList(gifteeName);
-          if (!checkIfAlreadyInList(gifteeName)){
-            addGift(gifteeName);
-            $(this).css("opacity", '0.1');
-            $(this).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith("Gift Added!");
-            $(this).animate({opacity: '1'},500,function () {
-              $(this).css("opacity", '0.1');
-              $(this).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(gifteeName);
-              $(this).animate({opacity: '1.0'},500);
-            });
-          }else{
-            $(this).css("opacity", '0.1');
-            $(this).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith("Gift is already in list");
-            $(this).animate({opacity: '1'},1000,function () {
-              $(this).css("opacity", '0.1');
-              $(this).contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(gifteeName);
-              $(this).animate({opacity: '1.0'},1000);
-            });
+        var toAnimate= $(this);
+        var toAnimateText = toAnimate.text();
+        var isInList = checkIfAlreadyInList(toAnimateText);
+        if (!checkIfAlreadyInList(toAnimateText)){
+          addGift(toAnimateText);
+          Animate(toAnimate,toAnimateText,"Gift Added",500);
+        }else{
+          Animate(toAnimate,toAnimateText,"gift is already in list",1000);
         }
         }
       }else{
@@ -99,9 +87,14 @@ $(document).ready(function() {
       $("#dynamicList li").addClass("gifteeAddPrompt");
     }
   }
-
-  function gifteeListClick(listElement){
-
+  function Animate(toAnimate,initialText,changedText,duration){
+        toAnimate.css("opacity", '0.1');
+        toAnimate.contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(changedText);
+        toAnimate.animate({opacity: '1'},duration,function () {
+          toAnimate.css("opacity", '0.1');
+          toAnimate.contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(initialText);
+          toAnimate.animate({opacity: '1.0'},duration);
+        });
   }
 
   function addGift(name){
@@ -124,13 +117,13 @@ $(document).ready(function() {
   }
 
   function sendToStorage(nameKey,storageContents,callback){
-    chrome.storage.sync.get(function(cfg) {
-      if(typeof(cfg[nameKey]) !== 'undefined' && cfg[nameKey] instanceof Array) { 
-        cfg[nameKey].push(storageContents);
+    chrome.storage.sync.get(function(result) {
+      if(typeof(result[nameKey]) !== 'undefined' && result[nameKey] instanceof Array) { 
+        result[nameKey].push(storageContents);
       } else {
-        cfg[nameKey] = [storageContents];
+        result[nameKey] = [storageContents];
       }
-      chrome.storage.sync.set(cfg);
+      chrome.storage.sync.set(result);
       if (callback) callback();
     });
   }
