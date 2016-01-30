@@ -72,9 +72,9 @@ $(document).ready(function() {
         var isInList = checkIfAlreadyInList(toAnimateText);
         if (!checkIfAlreadyInList(toAnimateText)){
           addGift(toAnimateText);
-          Animate(toAnimate,toAnimateText,"Gift Added",500);
+          animateListElement(toAnimate,toAnimateText,"Gift Added",500);
         }else{
-          Animate(toAnimate,toAnimateText,"gift is already in list",1000);
+          animateListElement(toAnimate,toAnimateText,"gift is already in list",1000);
         }
         }
       }else{
@@ -87,7 +87,7 @@ $(document).ready(function() {
       $("#dynamicList li").addClass("gifteeAddPrompt");
     }
   }
-  function Animate(toAnimate,initialText,changedText,duration){
+  function animateListElement(toAnimate,initialText,changedText,duration){
         toAnimate.css("opacity", '0.1');
         toAnimate.contents().filter(function(){ return this.nodeType == 3; }).first().replaceWith(changedText);
         toAnimate.animate({opacity: '1'},duration,function () {
